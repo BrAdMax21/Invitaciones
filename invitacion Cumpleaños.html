@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invitación de Cumpleaños</title>
+<link href="https://fonts.googleapis.com/css2?family=Playwrite+DK+Loopet:wght@100..400&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-image: url('https://wallpapers.com/images/high/plim-plim-in-a-magicians-hat-jilw10dstu0z0qwr.webp');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+    .invitacion {
+      width: 90%;
+      max-width: 600px;
+      background-color: rgba(173, 216,230, 0.5);
+      border-radius: 17px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+    .parpadeante {
+      font-size: 2em;
+      font-weight: bold;
+      color: #bF930d;
+      animation: parpadeo 1s infinite;
+    }
+
+    @keyframes parpadeo {
+      0% { opacity: 1; }
+      50% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    .pagina {
+      display: none;
+      padding: 20px;
+      text-align: center;
+    }
+    .pagina.activa {
+      display: block;
+    }
+    .navegacion {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      background-color: rgba(173, 216,230, 0.7);;
+    }
+    .navegacion button {
+      padding: 10px 20px;
+      border: none;
+      background-color: black;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .navegacion button:disabled {
+      background-color: rgba(192,192,192,1);
+      cursor: not-allowed;
+    }
+    img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+    .boton-maps {
+      padding: 10px 20px;
+      margin-top: 20px;
+      background-color: black;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .boton-maps:hover {
+      background-color: black;
+    }
+  p {
+    color: black;
+    font-size: 17px; 
+    font-family: 'Playwrite DK Loopet', cursive; 
+  }
+  p2 {
+    color: yellow;
+    font-size: 60px;
+    font-family: 'Playwrite DK Loopet', cursive;
+  }
+  p3 {
+color: blue;
+font-size: 17px;
+ }
+
+  h2 {
+    color: gold;
+    font-size: 17px;
+    font-family: 'Playwrite DK Loopet', cursive;
+  }
+
+  </style>
+</head>
+<body>
+
+  <div class="invitacion">
+    <!-- Página 1: Fecha y Lugar -->
+    <div class="pagina activa">
+      <h2>¡Estás invitado a mi fiesta de cumpleaños!</h2><br><br>
+      <p2 class="parpadeante">Max </p2><br><br>
+      <p><strong><p3>Fecha:</p3></strong> 10 de julio de 2025</p><br>
+      <p><strong><p3>Lugar:</strong> Salón de Eventos Fiesta Feliz, Calle Ficticia 123</p>
+      <a href="https://maps.app.goo.gl/EW9jjdFmZzpykfte9" target="_blank" class="boton-maps">Ubicación</a>
+    </div>
+
+    <!-- Página 2: Foto y Datos del Cumpleañero -->
+    <div class="pagina">
+      <h2 class="parpadeante">Conoce al Cumpleañero</h2>
+      <p><strong><p3>Nombre:</p3></strong> Max </p>
+      <p><strong><p3>Edad:</p3></strong> 4 años</p>
+      <p><strong><p3>Hobbies:</p3></strong> Jugar </p>
+    </div>
+
+    <!-- Página 3: Gustos del Cumpleañero -->
+    <div class="pagina">
+      <h2 class="parpadeante">Detalles Especiales</h2>
+      <p><strong><p3>Comida Favorita:</p3></strong> Pizza y tacos de cansta </p>
+      <p><strong><p3>Color Favorito:</p3></strong> Verde </p>
+      <p><strong><p3>Película Favorita:</p3></strong> Hotel Transilvania</p>
+      <p><strong><p3>Regalos Preferidos:</p3></strong> Ropa y Figuras de accion</p>
+    </div>
+
+ <!-- Página 4: Etiqueta de vestimenta -->
+  <div class="pagina">
+      <h2 class="parpadeante"> Fiesta de disfraces</h2>
+      <p><strong><p3>Tematica:</p3></strong> Personajes de caricaturas</p>
+      <p><strong><p3>Obligatorio:</p3></strong> No </p>
+      <p><strong><p3>Cumpleañero:</p3></strong> Spaiderman</p>
+    </div>
+
+    <!-- Navegación -->
+    <div class="navegacion">
+      <button id="prevBtn" disabled>Anterior</button>
+      <button id="nextBtn">Siguiente</button>
+    </div>
+  </div>
+
+  <script>
+    const paginas = document.querySelectorAll('.pagina');
+    let paginaActual = 0;
+
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    function actualizarNavegacion() {
+      paginas.forEach((pagina, index) => {
+        pagina.classList.toggle('activa', index === paginaActual);
+      });
+      prevBtn.disabled = paginaActual === 0;
+      nextBtn.disabled = paginaActual === paginas.length - 1;
+    }
+
+    prevBtn.addEventListener('click', () => {
+      if (paginaActual > 0) {
+        paginaActual--;
+        actualizarNavegacion();
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (paginaActual < paginas.length - 1) {
+        paginaActual++;
+        actualizarNavegacion();
+      }
+    });
+
+    actualizarNavegacion();
+  </script>
+
+</body>
+</html>
