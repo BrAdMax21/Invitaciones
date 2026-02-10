@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invitación de Cumpleaños</title>
+<link href="https://fonts.googleapis.com/css2?family=Fleur+De+Leah&family=Playwrite+DK+Loopet:wght@100..400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playwrite+DK+Loopet:wght@100..400&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: "Fleur De Leah", cursive;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-image: url('https://wallpapers.com/images/high/silver-wedding-rings-tl4q9h3pu32lt1zj.webp');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    .invitacion {
+      width: 90%;
+      max-width: 600px;
+      background-color: rgba(217, 79,0, 0.1);
+      border-radius: 17px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+    .parpadeante {
+      font-size: 4em;
+      font-weight: bold;
+      color: #bF930d;
+      animation: parpadeo 1s infinite;
+    }
+
+    @keyframes parpadeo {
+      0% { opacity: 1; }
+      50% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    .pagina {
+      display: none;
+      padding: 20px;
+      text-align: center;
+    }
+    .pagina.activa {
+      display: block;
+    }
+    .navegacion {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      background-color: rgba(217, 79,0, 0.1);;
+    }
+    .navegacion button {
+      padding: 10px 20px;
+      border: none;
+      background-color: #bF930d;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .navegacion button:disabled {
+      background-color: rgba(192,192,192,1);
+      cursor: not-allowed;
+    }
+    img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+    .boton-maps {
+      padding: 10px 20px;
+      margin-top: 20px;
+      margin-right: 50px;
+      margin-left: 50px;
+      background-color: #bF930d;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .boton-maps:hover {
+      background-color: black;
+    }
+  p {
+    color: black;
+    font-size: 17px; 
+    font-family:'Playwrite DK Loopet', cursive;
+  }
+  p2 {
+    color: #bF930d;
+    font-size: 60px;
+    font-family: "Fleur De Leah", cursive;
+  }
+  p3 {
+color: #bF930d;
+font-size: 17px;
+ }
+p4 {
+    color: black;
+    font-size: 100px;
+    font-family: "Fleur De Leah", cursive;
+  h2 {
+    color: #bF930d;
+    font-size: 60px;
+    font-family: 'Playwrite DK Loopet', cursive;
+
+  </style>
+</head>
+<body>
+
+  <div class="invitacion">
+    <!-- Página 1: Fecha y Lugar -->
+    <div class="pagina activa">
+      <p2> Ameli 	<br>&<br>
+ 	Rodrigo 	</p2><br>
+
+
+      <p4 class="parpadeante">Nuestra boda </p4><br><br>
+
+      <p> Cuando te das cuenta de que quieres pasar el resto de tu vida con alguien, deseas que el resto de tu vida empiece lo antes posible</p>
+
+     
+    </div>
+
+    <!-- Página 2:  -->
+    <div class="pagina">
+ 	<p2>Recepcion y ubicacion</p2>
+	<p><strong><p3>Fecha:</p3></strong> 20 de julio de 2025</p><br>
+      	<p><strong><p3>Recepcion:</strong> Salón de Eventos Fiesta Feliz, Calle Ficticia 123</p>
+      	<p><strong><p3>Iglesia:</strong> San juan, Calle imaginaria 123</p>
+     	<a href="https://maps.app.goo.gl/EW9jjdFmZzpykfte9" target="_blank" class="boton-maps">Recepcion</a> 	<a href="https://maps.app.goo.gl/EW9jjdFmZzpykfte9" target="_blank" class="boton-maps">Iglesia</a>
+
+
+    
+     
+    </div>
+
+    <!-- Página 3: Etiqueta de vesitmenta -->
+    <div class="pagina">
+      <p2>Codigo de vestimenta</p2>
+<p4> Formal</p4>
+
+    </div>
+
+ <!-- Pagina 4:  -->
+  <div class="pagina">
+      <p2> Confirmacion de asistencia</p2>
+      <p><strong><p3>Correo:</p3></strong> inventado@correo.com</p>
+      <p><strong><p3>Telefono:</p3></strong> (000)-000-0000 </p>
+    </div>
+
+    <!-- Navegación -->
+    <div class="navegacion">
+      <button id="prevBtn" disabled>Anterior</button>
+      <button id="nextBtn">Siguiente</button>
+    </div>
+  </div>
+
+  <script>
+    const paginas = document.querySelectorAll('.pagina');
+    let paginaActual = 0;
+
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    function actualizarNavegacion() {
+      paginas.forEach((pagina, index) => {
+        pagina.classList.toggle('activa', index === paginaActual);
+      });
+      prevBtn.disabled = paginaActual === 0;
+      nextBtn.disabled = paginaActual === paginas.length - 1;
+    }
+
+    prevBtn.addEventListener('click', () => {
+      if (paginaActual > 0) {
+        paginaActual--;
+        actualizarNavegacion();
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (paginaActual < paginas.length - 1) {
+        paginaActual++;
+        actualizarNavegacion();
+      }
+    });
+
+    actualizarNavegacion();
+  </script>
+
+</body>
+</html>
